@@ -272,6 +272,12 @@ function lexicon_manage_lexicon()
     }
 
     if ($run_module == 'config' && $action_file == 'lexicon') {
+
+        $folderprefix = "";
+        if($mybb->version_code <= 1820) {
+            $folderprefix = "editor_";
+        }
+
         // Lexicon Overview
         if ($mybb->input['action'] == "" || !isset($mybb->input['action'])) {
 
@@ -666,10 +672,10 @@ function lexicon_manage_lexicon()
                 // Editor scripts
                 $page->extra_header .= <<<EOF
                 
-<link rel="stylesheet" href="../jscripts/sceditor/editor_themes/mybb.css" type="text/css" media="all" />
+<link rel="stylesheet" href="../jscripts/sceditor/{$folderprefix}themes/mybb.css" type="text/css" media="all" />
 <script type="text/javascript" src="../jscripts/sceditor/jquery.sceditor.bbcode.min.js?ver=1805"></script>
 <script type="text/javascript" src="../jscripts/bbcodes_sceditor.js?ver=1808"></script>
-<script type="text/javascript" src="../jscripts/sceditor/editor_plugins/undo.js?ver=1805"></script>
+<script type="text/javascript" src="../jscripts/sceditor/{$folderprefix}plugins/undo.js?ver=1805"></script>
 EOF;
 
                 // Build options header
@@ -783,10 +789,10 @@ EOF;
             // Editor scripts
             $page->extra_header .= <<<EOF
 
-<link rel="stylesheet" href="../jscripts/sceditor/editor_themes/mybb.css" type="text/css" media="all" />
+<link rel="stylesheet" href="../jscripts/sceditor/{$folderprefix}themes/mybb.css" type="text/css" media="all" />
 <script type="text/javascript" src="../jscripts/sceditor/jquery.sceditor.bbcode.min.js?ver=1805"></script>
 <script type="text/javascript" src="../jscripts/bbcodes_sceditor.js?ver=1808"></script>
-<script type="text/javascript" src="../jscripts/sceditor/editor_plugins/undo.js?ver=1805"></script>
+<script type="text/javascript" src="../jscripts/sceditor/{$folderprefix}plugins/undo.js?ver=1805"></script>
 EOF;
 
             // Build options header
