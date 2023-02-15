@@ -133,9 +133,11 @@ function lexicon_activate()
         'template'    => $db->escape_string('<html>
 		<head>
 		<title>{$mybb->settings[\'bbname\']} - {$lang->lexicon}</title>
-		{$headerinclude}</head>
+		{$headerinclude}
+		</head>
 		<body>
 		{$header}
+		<div>
 			<table width="100%" cellspacing="5" cellpadding="5">
 				<tr>
 					{$menu}
