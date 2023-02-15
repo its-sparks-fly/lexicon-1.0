@@ -24,6 +24,8 @@ switch($mybb->input['action'])
 // Generate navigation
 $alphabet = range('A', 'Z');
 array_push($alphabet, "Ä", "Ö", "Ü");
+
+$menu_bit = '';
 foreach($alphabet as $letter) {
     eval("\$menu_bit .= \"".$templates->get("lexicon_nav_bit")."\";"); 
 }
