@@ -1,4 +1,5 @@
 <?php
+
 define("IN_MYBB", 1);
 define('THIS_SCRIPT', 'lexicon.php');
 
@@ -6,6 +7,8 @@ require_once "./global.php";
 $lang->load('lexicon');
 
 add_breadcrumb($lang->lexicon, "lexicon.php");
+
+$mybb->input['action'] = $mybb->get_input('action');
 
 // Breadcrump Navigation
 switch($mybb->input['action'])
