@@ -118,7 +118,6 @@ function lexicon_activate()
 					</td>
 				</tr>
 			</table>
-			</div>
 		{$footer}
 		</body>
 		</html>'),
@@ -137,7 +136,6 @@ function lexicon_activate()
 		</head>
 		<body>
 		{$header}
-		<div>
 			<table width="100%" cellspacing="5" cellpadding="5">
 				<tr>
 					{$menu}
@@ -154,7 +152,6 @@ function lexicon_activate()
 					</td>
 				</tr>
 			</table>
-			</div>
 		{$footer}
 		</body>
 		</html>'),
@@ -197,7 +194,7 @@ function lexicon_activate()
 
     $lexicon_nav = [
         'title'        => 'lexicon_nav',
-        'template'    => $db->escape_string('<td width="20%">
+        'template'    => $db->escape_string('<td width="20%" valign="top">
         <table border="0" cellspacing="{$theme[\'borderwidth\']}" cellpadding="{$theme[\'tablespace\']}" class="tborder">
         <tbody>
             <tr>
