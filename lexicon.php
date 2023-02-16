@@ -34,13 +34,8 @@ foreach ($alphabet as $letter)
 eval("\$menu = \"" . $templates->get("lexicon_nav") . "\";");
 
 // Search for categories
-$select_category = "";
-$query_cats = $db->simple_select(
-    "lexicon_categories",
-    "*",
-    "",
-    ["order_by" => 'name', "order_dir" => 'ASC']
-);
+$select_category = $categories_bit = "";
+$query_cats = $db->simple_select("lexicon_categories", "*", "", array("order_by" => 'name', "order_dir" => 'ASC'));
 if ($db->num_rows($query_cats) > 0)
 {
     while ($categories = $db->fetch_array($query_cats))
@@ -53,7 +48,6 @@ if ($db->num_rows($query_cats) > 0)
 // Landing Page
 if (!$mybb->input['action'])
 {
-
     eval("\$page = \"" . $templates->get("lexicon") . "\";");
     output_page($page);
 }
@@ -90,12 +84,7 @@ if ($mybb->input['action'] == "list")
     );
 
     $entry_bit = "";
-    $query = $db->simple_select(
-        "lexicon_entries",
-        "*",
-        "name LIKE '{$letter}%' AND name LIKE '%{$keyword}%' AND lcid LIKE '%{$cat}%'",
-        ["order_by" => 'name', "order_dir" => 'ASC']
-    );
+    $query = $db->simple_select("lexicon_entries", "*", "name LIKE '{$letter}%' AND name LIKE '%{$keyword}%' AND lcid LIKE '%{$cat}%'", array("order_by" => 'name', "order_dir" => 'ASC'));
     if ($db->num_rows($query) > 0)
     {
         while ($entry = $db->fetch_array($query))
