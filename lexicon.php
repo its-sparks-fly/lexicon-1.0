@@ -6,6 +6,18 @@ define('THIS_SCRIPT', 'lexicon.php');
 $templatelist = "lexicon_nav_bit, lexicon_nav, lexicon_list_bit, lexicon_list, lexicon";
 
 require_once "./global.php";
+
+if (!isset($plugins_cache))
+{
+    $plugins_cache = $cache->read('plugins');
+}
+
+if (is_array($plugins_cache) && is_array($plugins_cache['active']) && !isset($plugins_cache['active']['lexicon']))
+{
+    error();
+    exit;
+}
+
 $lang->load('lexicon');
 
 add_breadcrumb($lang->lexicon, "lexicon.php");
