@@ -41,3 +41,6 @@ $l['lexicon_manage_entry_deleted'] = "The entry has been deleted ";
 $l['lexicon_manage_error_no_title'] = "A name must be specified.";
 $l['lexicon_manage_error_no_text'] = "Content must be specified.";
 $l['lexicon_manage_error_invalid'] = "Invalid action";
+
+$l['lexicon_no_entries'] = "There are no entries added.";
+$l['lexicon_no_cats'] = "There are no categories added.";

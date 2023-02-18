@@ -346,16 +346,10 @@ function lexicon_manage_lexicon()
             $form_container->output_row_header($lang->controls, array("class" => "align_center", "width" => 150));
 
             // Get all entries
-            $query = $db->simple_select(
-                "lexicon_entries",
-                "*",
-                "",
-                ["order_by" => 'name', 'order_dir' => 'ASC']
-            );
+            $query = $db->simple_select("lexicon_entries", "*", "", array("order_by" => 'name', 'order_dir' => 'ASC'));
 
             while ($lexicon_entries = $db->fetch_array($query))
             {
-
                 // Get category
                 $cat = $db->simple_select("lexicon_categories", "name", "lcid='{$lexicon_entries['lcid']}'");
                 $cat_name = $db->fetch_field($cat, "name");
@@ -379,6 +373,12 @@ function lexicon_manage_lexicon()
                         . "&amp;my_post_key={$mybb->post_code}"
                 );
                 $form_container->output_cell($popup->fetch(), array("class" => "align_center"));
+                $form_container->construct_row();
+            }
+
+            if ($form_container->num_rows() == 0)
+            {
+                $form_container->output_cell($lang->lexicon_no_entries, array('colspan' => 4));
                 $form_container->construct_row();
             }
 
@@ -413,16 +413,10 @@ function lexicon_manage_lexicon()
             $form_container->output_row_header($lang->controls, array("class" => "align_center", "width" => 150));
 
             // Get all entries
-            $query = $db->simple_select(
-                "lexicon_categories",
-                "*",
-                "",
-                ["order_by" => 'name', 'order_dir' => 'DESC']
-            );
+            $query = $db->simple_select("lexicon_categories", "*", "", array("order_by" => 'name', 'order_dir' => 'ASC'));
 
             while ($lexicon_categories = $db->fetch_array($query))
             {
-
                 $form_container->output_cell('<strong>' . htmlspecialchars_uni($lexicon_categories['name']) . '</strong>');
                 $popup = new PopupMenu("lexicon_{$lexicon_categories['lcid']}", $lang->options);
                 $popup->add_item(
@@ -435,6 +429,12 @@ function lexicon_manage_lexicon()
                         . "&amp;my_post_key={$mybb->post_code}"
                 );
                 $form_container->output_cell($popup->fetch(), array("class" => "align_center"));
+                $form_container->construct_row();
+            }
+
+            if ($form_container->num_rows() == 0)
+            {
+                $form_container->output_cell($lang->lexicon_no_cats, array('colspan' => 2));
                 $form_container->construct_row();
             }
 
@@ -458,7 +458,6 @@ function lexicon_manage_lexicon()
                 // No errors - insert the lexicon
                 if (empty($errors))
                 {
-
                     $new_cat = [
                         "name" => $db->escape_string($mybb->input['name'])
                     ];
